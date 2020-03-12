@@ -1,0 +1,37 @@
+﻿@model IEnumerable<DataObjects.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var order in Model)
+{   
+    <ul>
+        <li>@order.OrderID</li>
+        <ul>
+            @foreach (var standardItem in order.StandardItem)
+            {
+                <li>
+                    @standardItem.StandardItemID
+                    <ul>
+                    @foreach (var addOn in standardItem.AddOns)
+                    {
+                        <li>
+                            @addOn.Name
+                        </li>
+                    }
+                    </ul>
+                </li>
+            }
+            
+            
+        </ul>
+        
+    </ul>
+}

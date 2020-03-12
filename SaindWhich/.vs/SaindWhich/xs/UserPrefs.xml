@@ -1,0 +1,25 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SaindWhich/frmUpdatePassword.xaml">
+    <Files>
+      <File FileName="DataAccess/DBConnection.cs" Line="1" Column="1" />
+      <File FileName="SaindWhich/frmEmployee.xaml" Line="1" Column="1" />
+      <File FileName="SaindWhich/frmUpdatePassword.xaml" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SaindWhich" expanded="True">
+            <Node name="DataAccess" expanded="True" />
+            <Node name="SaindWhichPresentationLayer" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
