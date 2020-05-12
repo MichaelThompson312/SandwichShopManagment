@@ -19,6 +19,15 @@ namespace DataAccess
         int updateEmployee(User oldUser, User newUser);
 
         int insertEmployee(User user);
+        User SelectUserByID(int id);
+
+        List<string> SelectAllRoles();
+
+        List<string> SelectRolesByEmployeeID(int employeeID);
+
+        User SelectUserByEmail(string email);
+
+        int InsertOrDeleteEmployeeRole(int employeeID, string role, bool delete = false);
 
     }
 }

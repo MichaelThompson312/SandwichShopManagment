@@ -91,6 +91,49 @@ namespace DataAccess
             return employeeID;
         }
 
+        public User SelectUserByID(int id)
+        {
+            User user = new User();
+
+            var conn = DBConnection.GetConnection();
+
+            var cmd = new SqlCommand("sp_select_employee_by_id");
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@EmployeeID", SqlDbType.Int);
+            cmd.Parameters["@EmployeeID"].Value = id;
+
+            try
+            {
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        user.EmployeeID = reader.GetInt32(0);
+                        user.FirstName = reader.GetString(1);
+                        user.LastName = reader.GetString(2);
+                        user.PhoneNumber = reader.GetString(3);
+                        user.Email = reader.GetString(4);
+                        
+                    }
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return user;
+        }
+
         public List<User> SelectUsersByActive(bool active = true)
         {
             List<User> users = new List<User>();
@@ -215,7 +258,7 @@ namespace DataAccess
             return result;
         }
 
-        private User SelectUserByEmail(string email)
+        public User SelectUserByEmail(string email)
         {
             User user = null;
 
@@ -282,6 +325,107 @@ namespace DataAccess
                 conn.Close();
             }
             return user;
+        }
+        public List<string> SelectAllRoles()
+        {
+            List<string> roles = new List<string>();
+
+            // connection
+            var conn = DBConnection.GetConnection();
+
+            // command objects
+            var cmd = new SqlCommand("sp_select_all_roles");
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                // open connection
+                conn.Open();
+
+                // execute the first command
+
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string role = reader.GetString(0);
+                    roles.Add(role);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return roles;
+        }
+
+        public List<string> SelectRolesByEmployeeID(int employeeID)
+        {
+            List<string> roles = new List<string>();
+
+            // connection
+            var conn = DBConnection.GetConnection();
+
+            // command objects
+            var cmd = new SqlCommand("sp_select_roles_by_userid");
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // parameters
+            cmd.Parameters.Add("@EmployeeID", SqlDbType.Int);
+            cmd.Parameters["@EmployeeID"].Value = employeeID;
+
+            try
+            {
+                // open connection
+                conn.Open();
+
+                // execute the first command
+
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string role = reader.GetString(0);
+                    roles.Add(role);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return roles;
+        }
+
+        public int InsertOrDeleteEmployeeRole(int employeeID, string role, bool delete = false)
+        {
+            int rows = 0;
+
+            string cmdText = delete ? "sp_delete_employee_role" : "sp_insert_employee_role";
+
+            var conn = DBConnection.GetConnection();
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+            cmd.Parameters.AddWithValue("@RoleID", role);
+
+            try
+            {
+                conn.Open();
+                rows = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return rows;
         }
 
     }

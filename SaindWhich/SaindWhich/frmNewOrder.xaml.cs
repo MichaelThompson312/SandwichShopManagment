@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -151,13 +151,36 @@ namespace SaindWhichPresentationLayer
 
         private void BtnSubmitOrder_Click(object sender, RoutedEventArgs e)
         {
+            if (txtOrderFirstName.Text.ToString() == "")
+            {
+                System.Windows.MessageBox.Show("Must enter a valid First name");
+                txtOrderFirstName.Focus();
+                return;
+            }
+            if (txtOrderLastName.Text.ToString() == "")
+            {
+                System.Windows.MessageBox.Show("Must enter a valid First Last");
+                txtOrderLastName.Focus();
+                return;
+            }
+            if (!(txtOrderEmail.Text.ToString().Length > 6
+                && txtOrderEmail.Text.ToString().Contains("@")
+                && txtOrderEmail.Text.ToString().Contains(".")))
+            {
+                System.Windows.MessageBox.Show("Must enter a valid Email");
+                txtOrderEmail.Focus();
+                return;
+            }
             if (System.Windows.MessageBox.Show("Are you sure?", "Submit Order", MessageBoxButton.YesNo,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
+                    _order.OrderFirstName = txtOrderFirstName.Text.ToString();
+                    _order.OrderLastName = txtOrderLastName.Text.ToString();
+                    _order.OrderEmail = txtOrderEmail.Text.ToString();
                     int orderID = _orderManager.AddOrder(_order, _user);//Creates an order
-
+                    
                     foreach (var a in _order.StandardItem)
                     {
                         a.StandardItemID = _standardItemManager.CreateStandardItem();//returns an int of the standarditemid, SP takes no parameters

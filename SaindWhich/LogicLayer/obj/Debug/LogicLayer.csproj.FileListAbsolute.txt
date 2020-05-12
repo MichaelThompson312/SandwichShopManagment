@@ -130,3 +130,25 @@ G:\Backup\Spring_2020\NET3\FinalProject\Sandwhich\SaindWhich\LogicLayer\obj\Debu
 G:\Backup\Spring_2020\NET3\FinalProject\Sandwhich\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
 G:\Backup\Spring_2020\NET3\FinalProject\Sandwhich\SaindWhich\LogicLayer\obj\Debug\LogicLayer.dll
 G:\Backup\Spring_2020\NET3\FinalProject\Sandwhich\SaindWhich\LogicLayer\obj\Debug\LogicLayer.pdb
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\LogicLayer.dll
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\LogicLayer.pdb
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataAccess.dll
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataObjects.dll
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataAccess.pdb
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataObjects.pdb
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csprojAssemblyReference.cache
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.dll
+D:\Backup\Spring_2020\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\LogicLayer.dll
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\LogicLayer.pdb
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataAccess.dll
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataObjects.dll
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataAccess.pdb
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataObjects.pdb
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csprojAssemblyReference.cache
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.dll
+C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.pdb

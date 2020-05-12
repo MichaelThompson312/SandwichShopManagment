@@ -15,15 +15,15 @@ namespace SandwhichMVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.Title = "Sandwich shop";
+            ViewBag.Message = "How we operate";
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Title = "Contact Us";
+            ViewBag.Message = "Orders can be picked up at";
             return View();
         }
     }

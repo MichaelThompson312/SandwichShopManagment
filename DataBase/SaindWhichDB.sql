@@ -39,8 +39,11 @@ PRINT '' PRINT '*** Creating Order table'
 GO
 CREATE TABLE [dbo].[order] (
 	[OrderID]			[int] IDENTITY(100,1) 	NOT NULL,
-	[EmployeeID] 		[int] 					 	NOT NULL,
-	[Status]			[nvarchar](50)				NOT NULL DEFAULT 'Unstarted',
+	[EmployeeID] 		[int] 					NOT NULL,
+	[Status]			[nvarchar](50)			NOT NULL DEFAULT 'Unstarted',
+	[OrderFirstName]	[nvarchar](50)			NOT NULL,
+	[OrderLastName]		[nvarchar](50)			NOT NULL,
+	[OrderEmail]		[nvarchar](250)			NOT NULL,
 	CONSTRAINT [pk_OrderID] PRIMARY KEY([OrderID] ASC),
 	CONSTRAINT [fk_employee_employeeID] FOREIGN KEY([EmployeeID]) REFERENCES [Employee]([EmployeeID]) ON UPDATE CASCADE,
 )
@@ -146,14 +149,17 @@ PRINT '' PRINT '*** Creating sp_insert_order'
 GO
 CREATE PROCEDURE [sp_insert_order]
 (
-	@EmployeeID 	[int] 
+	@EmployeeID 	[int], 
+	@OrderFirstName [NVARCHAR](50),
+	@OrderLastName  [NVARCHAR](50),
+	@OrderEmail		[NVARCHAR](250)
 )
 AS
 BEGIN
 	INSERT INTO [dbo].[Order]
-		([EmployeeID])
+		([EmployeeID], [OrderFirstName], [OrderLastName], [OrderEmail])
 	VALUES
-		(@EmployeeID)
+		(@EmployeeID, @OrderFirstName, @OrderLastName, @OrderEmail)
 	SELECT SCOPE_IDENTITY()
 END
 GO
@@ -216,7 +222,7 @@ CREATE PROCEDURE [sp_get_order_by_status]
 	@Status			[nvarchar](50)
 )
 AS BEGIN
-	SELECT o.OrderID, [StandardItem].StandardItemID, [ingredient].IngredientName, [ingredient].IngredientDescription
+	SELECT o.OrderID, o.OrderFirstName, o.OrderLastName, o.OrderEmail, [StandardItem].StandardItemID, [ingredient].IngredientName, [ingredient].IngredientDescription
 	FROM [dbo].[order] o
 	LEFT JOIN [OrderItems]
 	ON o.OrderID = OrderItems.OrderID
@@ -236,7 +242,7 @@ PRINT '' PRINT '*** Creating sp_get_all_active_orders'
 GO
 CREATE PROCEDURE [sp_get_all_active_orders]
 AS BEGIN
-	SELECT o.OrderID, [StandardItem].StandardItemID, [ingredient].IngredientName, [ingredient].IngredientDescription
+	SELECT o.OrderID, o.OrderFirstName, o.OrderLastName, o.OrderEmail, [StandardItem].StandardItemID, [ingredient].IngredientName, [ingredient].IngredientDescription
 	FROM [dbo].[order] o
 	LEFT JOIN [OrderItems]
 	ON o.OrderID = OrderItems.OrderID
@@ -249,6 +255,23 @@ AS BEGIN
 	ON OrderItemAddOns.IngredientID = Ingredient.IngredientID
 	WHERE 
 		o.Status != 'Delivered'
+END
+GO
+
+
+PRINT '' PRINT '*** Creating sp_get_order_by_email_and_Active'
+GO
+CREATE PROCEDURE [sp_get_order_by_email_and_Active]
+(
+	@OrderEmail		[NVARCHAR](250) 
+)
+AS BEGIN
+	SELECT o.OrderID, o.OrderFirstName, o.OrderLastName, o.OrderEmail, o.Status
+	FROM [dbo].[order] o
+	
+	WHERE 
+		o.Status != 'Delivered' 
+		AND o.OrderEmail = @OrderEmail
 END
 GO
 
@@ -415,6 +438,21 @@ BEGIN
 END
 GO
 
+PRINT '' PRINT '*** Creating sp_select_order_by_email'
+GO
+CREATE PROCEDURE [sp_select_order_by_email]
+(
+	@OrderEmail		[nvarchar](250)
+)
+AS
+BEGIN
+	SELECT [Status],[OrderFirstName],[OrderLastName]
+	FROM [Order]
+	WHERE [OrderEmail] = @OrderEmail
+END
+GO
+
+
 PRINT '' PRINT '*** Creating sp_select_roles_by_userid'
 GO
 CREATE PROCEDURE [sp_select_roles_by_userid]
@@ -451,7 +489,7 @@ GO
 
 PRINT '' PRINT '*** Creating sp_select_users_by_active'
 GO
-CREATE PROCEDURE sp_select_users_by_active
+CREATE PROCEDURE [sp_select_users_by_active]
 (
 	@Active		[bit]
 )
@@ -465,7 +503,7 @@ GO
 
 PRINT '' PRINT '*** Creating sp_select_all_addons'
 GO
-CREATE PROCEDURE sp_select_all_addons
+CREATE PROCEDURE [sp_select_all_addons]
 AS
 BEGIN
 	SELECT 	[IngredientName],
@@ -474,9 +512,11 @@ BEGIN
 END
 GO
 
+
+
 PRINT '' PRINT '*** Creating sp_select_employee_by_id'
 GO
-CREATE PROCEDURE sp_select_employee_by_id
+CREATE PROCEDURE [sp_select_employee_by_id]
 (
 	@EmployeeID	[int]
 )
@@ -490,7 +530,7 @@ GO
 
 PRINT '' PRINT '*** Creating sp_update_employee'
 GO
-CREATE PROCEDURE sp_update_employee
+CREATE PROCEDURE [sp_update_employee]
 (
 	@EmployeeID		[int],
 	
@@ -523,7 +563,7 @@ GO
 
 PRINT '' PRINT '*** Creating sp_deactivate_employee'
 GO
-CREATE PROCEDURE sp_deactivate_employee
+CREATE PROCEDURE [sp_deactivate_employee]
 (
 	@EmployeeID		[int]
 )
@@ -538,7 +578,7 @@ GO
 
 PRINT '' PRINT '*** Creating sp_reactivate_employee'
 GO
-CREATE PROCEDURE sp_reactivate_employee
+CREATE PROCEDURE [sp_reactivate_employee]
 (
 	@EmployeeID		[int]
 )
@@ -553,7 +593,7 @@ GO
 
 PRINT '' PRINT '*** Creating sp_insert_employee_role'
 GO
-CREATE PROCEDURE sp_insert_employee_role
+CREATE PROCEDURE [sp_insert_employee_role]
 (
 	@EmployeeID		[int],
 	@RoleID			[nvarchar](50)
@@ -569,7 +609,7 @@ GO
 
 PRINT '' PRINT '*** Creating sp_delete_employee_role'
 GO
-CREATE PROCEDURE sp_delete_employee_role
+CREATE PROCEDURE [sp_delete_employee_role]
 (
 	@EmployeeID		[int],
 	@RoleID			[nvarchar](50)
@@ -584,7 +624,7 @@ GO
 
 PRINT '' PRINT '*** Creating sp_select_all_roles'
 GO
-CREATE PROCEDURE sp_select_all_roles
+CREATE PROCEDURE [sp_select_all_roles]
 AS
 BEGIN
 	SELECT [RoleID]
@@ -600,7 +640,10 @@ GO
 DECLARE	@return_value int
 
 EXEC	@return_value = [dbo].[sp_insert_order]
-		@EmployeeID = 1000002
+		@EmployeeID = 1000002,
+		@OrderFirstName = 'Jerry',
+		@OrderLastName = 'Gergich',
+		@OrderEmail = 'Jerry@gmail.com'
 GO
 
 
@@ -671,28 +714,3 @@ EXEC	[dbo].[sp_insert_addon]
 		@IngredientID = 510
 
 GO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

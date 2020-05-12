@@ -20,8 +20,15 @@ namespace DataAccess
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@EmployeeID", SqlDbType.Int);
+            cmd.Parameters.Add("@OrderFirstName", SqlDbType.NVarChar);
+            cmd.Parameters.Add("@OrderLastName", SqlDbType.NVarChar);
+            cmd.Parameters.Add("@OrderEmail", SqlDbType.NVarChar);
+
             int employeeID = user.EmployeeID;
             cmd.Parameters["@EmployeeID"].Value = employeeID;
+            cmd.Parameters["@OrderFirstName"].Value = order.OrderFirstName;
+            cmd.Parameters["@OrderLastName"].Value = order.OrderLastName;
+            cmd.Parameters["@OrderEmail"].Value = order.OrderEmail;
 
             try
             {
@@ -82,7 +89,7 @@ namespace DataAccess
 
             var conn = DBConnection.GetConnection();
 
-            var cmd = new SqlCommand("[sp_get_all_active_orders]");
+            var cmd = new SqlCommand("sp_get_all_active_orders");
 
             cmd.Connection = conn;
 
@@ -148,11 +155,14 @@ namespace DataAccess
                     {
                         var order = new Order();
                         order.OrderID = reader.GetInt32(0);
+                        order.OrderFirstName = reader.GetString(1);
+                        order.OrderLastName = reader.GetString(2);
+                        order.OrderEmail = reader.GetString(3);
                         var standardItem = new StandardItem();
-                        standardItem.StandardItemID = reader.GetInt32(1);
+                        standardItem.StandardItemID = reader.GetInt32(4);
                         var addOn = new AddOn();
-                        addOn.Name = reader.GetString(2);
-                        addOn.Description = reader.GetString(3);
+                        addOn.Name = reader.GetString(5);
+                        addOn.Description = reader.GetString(6);
                         standardItem.AddOns.Add(addOn);
                         order.StandardItem.Add(standardItem);
                         orders.Add(order);
@@ -170,6 +180,168 @@ namespace DataAccess
             }
             
             return orders;
+        }
+
+        public List<Order> RetrieveOrderByEmail(string email)
+        {
+            List<Order> orders = new List<Order>();
+
+            var conn = DBConnection.GetConnection();
+
+            var cmd = new SqlCommand("sp_select_order_by_email");
+
+            cmd.Connection = conn;
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@OrderEmail", SqlDbType.NVarChar, 250);
+            cmd.Parameters["@OrderEmail"].Value = email;
+
+            try
+            {
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        var order = new Order();
+                        order.OrderStatus = reader.GetString(0);
+                        order.OrderFirstName = reader.GetString(1);
+                        order.OrderLastName = reader.GetString(2);
+                        order.OrderEmail = email;
+                        orders.Add(order);
+                    }
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return orders;
+        }
+
+        public List<Order> RetrieveOrderByEmailAndActive(string email)
+        {
+            List<Order> orders = new List<Order>();
+
+            var conn = DBConnection.GetConnection();
+
+            var cmd = new SqlCommand("sp_get_order_by_email_and_Active");
+
+            cmd.Connection = conn;
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@OrderEmail", SqlDbType.NVarChar, 250);
+            cmd.Parameters["@OrderEmail"].Value = email;
+
+            try
+            {
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        var order = new Order();
+                        order.OrderID = reader.GetInt32(0);
+                        
+                        order.OrderFirstName = reader.GetString(1);
+                        order.OrderLastName = reader.GetString(2);
+                        order.OrderStatus = reader.GetString(4);
+                        order.OrderEmail = email;
+                        orders.Add(order);
+                    }
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return orders;
+        }
+
+        public Order RetrieveOrderById(int id)
+        {
+            
+            var order = new Order();
+            
+            
+            var conn = DBConnection.GetConnection();
+
+            var cmd = new SqlCommand("sp_get_all_active_orders");
+            //TODO change this
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            //cmd.Parameters.Add("@OrderID", SqlDbType.Int);
+            //cmd.Parameters["@OrderID"].Value = id;
+
+            try
+            {
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+
+                int tempStandardItem = 0;
+                string tempAddOn = null;
+
+
+                List<AddOn> addOns = new List<AddOn>();
+                List<StandardItem> standardItemList = new List<StandardItem>();
+
+                var addOn = new AddOn();
+                var standardItem = new StandardItem();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        order.OrderID = reader.GetInt32(0);
+                        if(reader.GetInt32(1) != tempStandardItem)//Means that it hit a new standard item
+                        {
+
+                            standardItem.StandardItemID = reader.GetInt32(1);
+
+                            tempStandardItem = reader.GetInt32(1);
+                                             
+                            
+                        }
+                        else// Means that it is on the same standard item and the add on must be added
+                        {
+                            AddOn newAddOn = new AddOn();
+                            newAddOn.Name = reader.GetString(2);
+
+                            addOns.Add(newAddOn);
+
+                            standardItemList.Add(standardItem);
+                        }
+                    }
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
+
+            return order;
         }
 
         public bool UpdateOrderStatus(string status, int orderID)

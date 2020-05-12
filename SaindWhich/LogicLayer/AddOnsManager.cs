@@ -11,11 +11,17 @@ namespace LogicLayer
 {
     public class AddOnsManager : IAddOnsManager
     {
-        private AddOnsAccessor _addOnsAccessor;
+        private IAddOnsAccessor _addOnsAccessor;
 
         public AddOnsManager()
         {
             _addOnsAccessor = new AddOnsAccessor();
+            List<string> addOnList = new List<string>();
+        }
+
+        public AddOnsManager(IAddOnsAccessor addOnsAccessor)
+        {
+            _addOnsAccessor = addOnsAccessor;
             List<string> addOnList = new List<string>();
         }
 

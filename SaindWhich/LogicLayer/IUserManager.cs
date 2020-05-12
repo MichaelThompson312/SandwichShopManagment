@@ -17,8 +17,15 @@ namespace LogicLayer
 
         bool EditEmployee(User oldUser, User newUser);
         bool AddEmployee(User user);
+        User GetUserByID(int id);
 
+        List<string> RetrieveEmployeeRoles(int employeeID);
+        List<string> RetrieveEmployeeRoles();
 
+        bool FindUser(string email);
+        int RetrieveUserIDFromEmail(string email);
 
+        bool DeleteUserRole(int employeeID, string role);
+        bool AddUserRole(int employeeID, string role);
     }
 }

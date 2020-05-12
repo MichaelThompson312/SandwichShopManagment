@@ -12,18 +12,17 @@ namespace LogicLayer
     public class StandardItemManager : IStandardItemManager
     {
         private IStandardItemAccessor _standardItemAccessor;
+        public StandardItemManager(IStandardItemAccessor standardItemAccessor)
+        {
+            _standardItemAccessor = standardItemAccessor;
+        }
 
         public StandardItemManager()
         {
             _standardItemAccessor = new StandardItemAccessor();
         }
 
-        public StandardItemManager(IStandardItemAccessor standardItemAccessor)
-        {
-            _standardItemAccessor = standardItemAccessor;
-        }
-               
-        
+
         public int CreateStandardItem()
         {
             int result = 0;

@@ -13,14 +13,14 @@ namespace LogicLayer
     {
         private IUserAccessor _userAccessor;
 
-        public UserManager()
-        {
-            _userAccessor = new UserAccessor();
-        }
-
         public UserManager(IUserAccessor userAccessor)
         {
             _userAccessor = userAccessor;
+        }
+
+        public UserManager()
+        {
+            _userAccessor = new UserAccessor();
         }
 
         public bool AddEmployee(User user)
@@ -69,6 +69,19 @@ namespace LogicLayer
                 throw ex;
             }
             return result;
+        }
+
+        public User GetUserByID(int id)
+        {
+            try
+            {
+                return _userAccessor.SelectUserByID(id);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("User not found", ex);
+                throw;
+            }
         }
 
         public List<User> GetUserListByActive(bool active = true)
@@ -124,6 +137,98 @@ namespace LogicLayer
             return result;
         }
 
+        public List<string> RetrieveEmployeeRoles(int employeeID)
+        {
+            List<string> roles = null;
 
+            try
+            {
+                roles = _userAccessor.SelectRolesByEmployeeID(employeeID);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Roles not found", ex);
+            }
+
+            return roles;
+        }
+
+        public List<string> RetrieveEmployeeRoles()
+        {
+            List<string> roles = null;
+
+            try
+            {
+                roles = _userAccessor.SelectAllRoles();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Roles not found", ex);
+            }
+
+            return roles;
+        }
+
+        public bool FindUser(string email)
+        {
+            try
+            {
+                return _userAccessor.SelectUserByEmail(email) != null;
+            }
+            catch (ApplicationException ax)
+            {
+                if(ax.Message == "User not found.")
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Database error", ex);
+            }
+        }
+
+        public int RetrieveUserIDFromEmail(string email)
+        {
+            try
+            {
+                return _userAccessor.SelectUserByEmail(email).EmployeeID;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Database Error", ex);
+            }
+        }
+
+        public bool AddUserRole(int employeeID, string role)
+        {
+            bool result = false;
+            try
+            {
+                result = (1 == _userAccessor.InsertOrDeleteEmployeeRole(employeeID, role));
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Role not added!", ex);
+            }
+            return result;
+        }
+        public bool DeleteUserRole(int employeeID, string role)
+        {
+            bool result = false;
+            try
+            {
+                result = (1 == _userAccessor.InsertOrDeleteEmployeeRole(employeeID, role, delete: true));
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Role not removed!", ex);
+            }
+            return result;
+        }
     }
 }

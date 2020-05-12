@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaindWhichPresentationLayer"
         mc:Ignorable="d"
-        Title="New Order" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="New Order" Height="550" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -43,8 +43,20 @@
             </Grid.RowDefinitions>
             <Label HorizontalContentAlignment="Center">Avalible Add On Items</Label>
             <ListBox  x:Name="lstAddOns" IsEnabled="False" FontSize="10" Grid.Row="1" Grid.Column="0" MouseDoubleClick="LstAddOns_MouseDoubleClick"></ListBox>
+            <Label x:Name="lblOrderFirstName" Grid.Column="1" Grid.Row="1" Margin="10 10 10 0" VerticalAlignment="Top"
+                     Width="120" Height="30" >Customer First Name</Label>
+            <TextBox x:Name="txtOrderFirstName" Grid.Column="1" Grid.Row="1" Margin="10 50 10 0" VerticalAlignment="Top"
+                     Width="120" Height="30" BorderBrush="AliceBlue" BorderThickness="2"></TextBox>
+            <Label x:Name="lblOrderLastName" Grid.Column="1" Grid.Row="1" Margin="10 90 10 0" VerticalAlignment="Top"
+                     Width="120" Height="30" >Customer Last Name</Label>
+            <TextBox x:Name="txtOrderLastName" Grid.Column="1" Grid.Row="1" Margin="10 130 10 0" VerticalAlignment="Top"
+                     Width="120" Height="30" BorderBrush="AliceBlue" BorderThickness="2"></TextBox>
+            <Label x:Name="lblOrderEmail" Grid.Column="1" Grid.Row="1" Margin="10 190 10 0" VerticalAlignment="Top"
+                     Width="120" Height="30" >Customer Email</Label>
+            <TextBox x:Name="txtOrderEmail" Grid.Column="1" Grid.Row="1" Margin="10 220 10 0" VerticalAlignment="Top"
+                     Width="120" Height="30" BorderBrush="AliceBlue" BorderThickness="2"></TextBox>
             <Button x:Name="btnAdditionalItem" Content="Add Another Item" Grid.Column="1" Grid.Row="1" 
-                Margin="10 30 10 0" VerticalAlignment="Top" Width="120" Height="30" Click="BtnAdditionalItem_Click"></Button>
+                Margin="10 00 10 140" VerticalAlignment="bottom" Width="120" Height="30" Click="BtnAdditionalItem_Click"></Button>
             <Button x:Name="btnSubmitOrder" IsEnabled="False" Content="Submit Order" Grid.Column="1" Grid.Row="1"
                     Margin="10 0 10 70" VerticalAlignment="Bottom" Width="120" Height="30" Click="BtnSubmitOrder_Click"></Button>
         </Grid>

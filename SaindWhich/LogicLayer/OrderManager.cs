@@ -11,16 +11,16 @@ namespace LogicLayer
 {
     public class OrderManager : IOrderManager
     {
-        private IOrderAccessor _orderAccessor;
-
-        public OrderManager()
-        {
-            _orderAccessor = new OrderAccessor();
-        }
+        private IOrderAccessor _orderAccessor;       
 
         public OrderManager(IOrderAccessor orderAccessor)
         {
             _orderAccessor = orderAccessor;
+        }
+
+        public OrderManager()
+        {
+            _orderAccessor = new OrderAccessor();
         }
 
         public int AddOrder(Order order, User user)
@@ -86,6 +86,56 @@ namespace LogicLayer
             try
             {
                 return _orderAccessor.RetrieveAllActiveOrders();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("List Not Avalible", ex);
+            }
+        }
+
+        public Order GetOrderByID(int id)
+        {
+            try
+            {
+                return _orderAccessor.RetrieveOrderById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Order Not Avalible", ex);
+            }
+        }
+
+        public Order CreateRandomOrder(int customerID, int numberOfItems)
+        {
+            Order order = new Order();
+
+            for (int i = 0; i < numberOfItems - 1; i++)
+            {
+                Random random = new Random();
+
+                //return random.Next(min, max);
+            }
+
+            return order;
+        }
+
+        public List<Order> GetOrderByEmail(string email)
+        {
+            try
+            {
+                return _orderAccessor.RetrieveOrderByEmail(email);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("List Not Avalible", ex);
+            }
+        }
+
+        public List<Order> GetOrderByEmailAndActive(string email)
+        {
+            try
+            {
+                return _orderAccessor.RetrieveOrderByEmailAndActive(email);
             }
             catch (Exception ex)
             {

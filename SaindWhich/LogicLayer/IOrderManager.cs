@@ -17,5 +17,9 @@ namespace LogicLayer
         bool UpdateOrderStatus(string status, int orderID);
 
         bool CreateOrderItem(int standardItemID, int orderID);
+        Order GetOrderByID(int id);
+        Order CreateRandomOrder(int customerID, int numberOfItems);
+        List<Order> GetOrderByEmail(string email);
+        List<Order> GetOrderByEmailAndActive(string email);
     }
 }

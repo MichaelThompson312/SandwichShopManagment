@@ -1,37 +1,56 @@
 ﻿@model IEnumerable<DataObjects.Order>
 
-@{
-    ViewBag.Title = "Index";
-}
+<!DOCTYPE html>
 
-<h2>Index</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<body>
+    <button class="btn-lg" style="margin: 15px" value="Create a New Order!" >
+        @Html.ActionLink("Create New", "Create")
+    </button>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var order in Model)
-{   
-    <ul>
-        <li>@order.OrderID</li>
-        <ul>
-            @foreach (var standardItem in order.StandardItem)
-            {
-                <li>
-                    @standardItem.StandardItemID
-                    <ul>
-                    @foreach (var addOn in standardItem.AddOns)
-                    {
-                        <li>
-                            @addOn.Name
-                        </li>
-                    }
-                    </ul>
-                </li>
-            }
-            
-            
-        </ul>
-        
-    </ul>
-}
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { email = item.OrderEmail })
+        </td>
+      
+    </tr>
+        }
+
+    </table>
+</body>
+</html>
