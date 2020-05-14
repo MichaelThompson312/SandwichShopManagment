@@ -124,3 +124,12 @@ C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\Saind
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\bin\Debug\DataObjects.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\bin\Debug\DataObjects.pdb
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataAccess\obj\Debug\DataAccess.pdb

@@ -152,3 +152,14 @@ C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\Saind
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.dll
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\bin\Debug\LogicLayer.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\bin\Debug\LogicLayer.pdb
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataAccess.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataObjects.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataAccess.pdb
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\bin\Debug\DataObjects.pdb
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csprojAssemblyReference.cache
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\LogicLayer\obj\Debug\LogicLayer.pdb

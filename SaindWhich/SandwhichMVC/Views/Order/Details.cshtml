@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DataObjects.Order>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderLastName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderFirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderLastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderStatus)
+    </td>
+    @if (item.OrderStatus == "Unstarted")
+    {
+        <td>
+            @Html.ActionLink("Cancel Order", "Delete", new { id = item.OrderID })
+        </td>
+    }
+</tr>
+}
+
+</table>
+<p>Only orders thave have not been started may be canceled. we apologize any inconvenience it may cause</p>

@@ -64,3 +64,9 @@ C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\Saind
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\DataObjects\obj\Debug\DataObjects.dll
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\DataObjects\obj\Debug\DataObjects.pdb
 C:\Users\Michael Thompson\Desktop\NET3\FinalProject\SandwhichShopManagment\SaindWhich\DataObjects\obj\Debug\DataObjects.csprojAssemblyReference.cache
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataObjects\bin\Debug\DataObjects.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataObjects\bin\Debug\DataObjects.pdb
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataObjects\obj\Debug\DataObjects.csprojAssemblyReference.cache
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataObjects\obj\Debug\DataObjects.csproj.CoreCompileInputs.cache
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataObjects\obj\Debug\DataObjects.dll
+C:\Users\Michael Thompson\Desktop\NET3\Sandwhichasdf\SandwichShopManagment\SaindWhich\DataObjects\obj\Debug\DataObjects.pdb
